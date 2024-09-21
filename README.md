@@ -18,7 +18,7 @@ Welcome to the Professor Karamian's COMP 586 class repository. This repository c
 
 ## Class Exercises
 
-**Exercise 1**: [Class Exercise 1](Class%20Exercise%201/Class%20Exercise%201)
+**Exercise 1**: [Class Exercise 1](Class%20Exercise%201/ClassExercise1)
 
 ## How to Use This Repository
 
