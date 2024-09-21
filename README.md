@@ -10,7 +10,7 @@ Welcome to the Professor Karamian's COMP 586 class repository. This repository c
 
 ## Assignments
 
-<u><b>EMPTY</b></u>
+**EMPTY**
 
 ## Projects
 
