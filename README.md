@@ -10,15 +10,15 @@ Welcome to the Professor Karamian's COMP 586 class repository. This repository c
 
 ## Assignments
 
-1. **Assignment 1**: EMPTY
+<b>EMPTY</b>
 
 ## Projects
 
-1. **Project 1**: [Project 1](Project%201)
+**Project 1**: [Project 1](Project%201)
 
 ## Class Exercises
 
-1. **Exercise 1**: [Class Exercise 1](Class%20Exercise%201/Class%20Exercise%201)
+**Exercise 1**: [Class Exercise 1](Class%20Exercise%201/Class%20Exercise%201)
 
 ## How to Use This Repository
 
