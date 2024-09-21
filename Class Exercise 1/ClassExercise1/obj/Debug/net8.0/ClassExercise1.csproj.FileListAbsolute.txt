@@ -1,0 +1,14 @@
+/Users/justchance/Desktop/classes/comp586/Class Exercise 1/ClassExercise1/obj/Debug/net8.0/ClassExercise1.GeneratedMSBuildEditorConfig.editorconfig
+/Users/justchance/Desktop/classes/comp586/Class Exercise 1/ClassExercise1/obj/Debug/net8.0/ClassExercise1.AssemblyInfoInputs.cache
+/Users/justchance/Desktop/classes/comp586/Class Exercise 1/ClassExercise1/obj/Debug/net8.0/ClassExercise1.AssemblyInfo.cs
+/Users/justchance/Desktop/classes/comp586/Class Exercise 1/ClassExercise1/obj/Debug/net8.0/ClassExercise1.csproj.CoreCompileInputs.cache
+/Users/justchance/Desktop/classes/comp586/Class Exercise 1/ClassExercise1/bin/Debug/net8.0/ClassExercise1
+/Users/justchance/Desktop/classes/comp586/Class Exercise 1/ClassExercise1/bin/Debug/net8.0/ClassExercise1.deps.json
+/Users/justchance/Desktop/classes/comp586/Class Exercise 1/ClassExercise1/bin/Debug/net8.0/ClassExercise1.runtimeconfig.json
+/Users/justchance/Desktop/classes/comp586/Class Exercise 1/ClassExercise1/bin/Debug/net8.0/ClassExercise1.dll
+/Users/justchance/Desktop/classes/comp586/Class Exercise 1/ClassExercise1/bin/Debug/net8.0/ClassExercise1.pdb
+/Users/justchance/Desktop/classes/comp586/Class Exercise 1/ClassExercise1/obj/Debug/net8.0/ClassExercise1.dll
+/Users/justchance/Desktop/classes/comp586/Class Exercise 1/ClassExercise1/obj/Debug/net8.0/refint/ClassExercise1.dll
+/Users/justchance/Desktop/classes/comp586/Class Exercise 1/ClassExercise1/obj/Debug/net8.0/ClassExercise1.pdb
+/Users/justchance/Desktop/classes/comp586/Class Exercise 1/ClassExercise1/obj/Debug/net8.0/ClassExercise1.genruntimeconfig.cache
+/Users/justchance/Desktop/classes/comp586/Class Exercise 1/ClassExercise1/obj/Debug/net8.0/ref/ClassExercise1.dll
