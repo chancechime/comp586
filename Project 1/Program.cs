@@ -132,7 +132,7 @@ namespace Project1
             }
             else
             {
-                Console.WriteLine("TV is Off. Unable to adjust volume.");
+                Console.WriteLine("TV is Off. Unable to adjust Volume.");
             }
         }
         public void Channel(int channel) // Change Channel Method
@@ -148,7 +148,7 @@ namespace Project1
                     }
                     else
                     {
-                        Console.WriteLine("TV is Off. Unable to change channel.");
+                        Console.WriteLine("TV is Off. Unable to change Channel.");
                     }
                     break;
                 case -1: // Decrease Channel
@@ -160,7 +160,7 @@ namespace Project1
                     }
                     else
                     {
-                        Console.WriteLine("TV is Off. Unable to change channel.");
+                        Console.WriteLine("TV is Off. Unable to change Channel.");
                     }
                     break;
                 default: // Change to specific channel
@@ -171,7 +171,7 @@ namespace Project1
                     }
                     else
                     {
-                        Console.WriteLine("TV is Off. Unable to change channel.");
+                        Console.WriteLine("TV is Off. Unable to change Channel.");
                     }
                     break;
             }
@@ -206,7 +206,7 @@ namespace Project1
             switch (smartcmd) // Smart Menu
             {
                 case "1": // Apps
-                    Console.WriteLine("Opening Apps...");
+                    Console.WriteLine("Opening Apps ...");
                     screen.TVStatus();
                     Console.WriteLine("Apps Menu"); // Apps Menu
                     Console.WriteLine("   1 - Netflix");
@@ -222,92 +222,95 @@ namespace Project1
                     switch (appcmd) // Apps Menu
                     {
                         case "1": // Netflix
-                            Console.WriteLine("Opening Netflix...");
+                            Console.WriteLine("Opening Netflix ...");
                             Delay.delay();
-                            Console.WriteLine("Press any key to return to Smart Menu...");
+                            screen.TVStatus();
+                            Console.WriteLine("Netflix Opened\n");
+                            Console.WriteLine("Press any key to return to Smart Menu ...");
                             Console.ReadKey();
-                            Console.Clear();
                             SmartMenu();
                             break;
                         case "2": // Hulu
-                            Console.WriteLine("Opening Hulu...");
+                            Console.WriteLine("Opening Hulu ...");
                             Delay.delay();
-                            Console.WriteLine("Press any key to return to Smart Menu...");
+                            screen.TVStatus();
+                            Console.WriteLine("Hulu Opened\n");
+                            Console.WriteLine("Press any key to return to Smart Menu ...");
                             Console.ReadKey();
-                            Console.Clear();
                             SmartMenu();
                             break;
                         case "3": // Amazon Prime Video
-                            Console.WriteLine("Opening Amazon Prime Video...");
+                            Console.WriteLine("Opening Amazon Prime Video ...");
                             Delay.delay();
-                            Console.WriteLine("Press any key to return to Smart Menu...");
+                            screen.TVStatus();
+                            Console.WriteLine("Amazon Prime Video Opened\n");
+                            Console.WriteLine("Press any key to return to Smart Menu ...");
                             Console.ReadKey();
-                            Console.Clear();
                             SmartMenu();
                             break;
                         case "4": // Disney+
-                            Console.WriteLine("Opening Disney+...");
+                            Console.WriteLine("Opening Disney+ ...");
                             Delay.delay();
-                            Console.WriteLine("Press any key to return to Smart Menu...");
+                            screen.TVStatus();
+                            Console.WriteLine("Disney+ Opened\n");
+                            Console.WriteLine("Press any key to return to Smart Menu ...");
                             Console.ReadKey();
-                            Console.Clear();
                             SmartMenu();
                             break;
                         case "5": // YouTube
-                            Console.WriteLine("Opening YouTube...");
+                            Console.WriteLine("Opening YouTube ...");
                             Delay.delay();
-                            Console.WriteLine("Press any key to return to Smart Menu...");
+                            screen.TVStatus();
+                            Console.WriteLine("Youtube Opened\n");
+                            Console.WriteLine("Press any key to return to Smart Menu ...");
                             Console.ReadKey();
-                            Console.Clear();
                             SmartMenu();
                             break;
                         case "0": // Exit Apps
-                            Console.WriteLine("Exiting...");
+                            Console.WriteLine("Exiting Apps ...");
+                            SmartMenu();
                             break;
                         default: // Invalid Command
                             Console.WriteLine("Invalid Command. Please try again.");
+                            SmartMenu();
                             break;
                     }
                     break;
                 case "2": // Gallery
-                    Console.WriteLine("Opening Gallery...");
+                    Console.WriteLine("Opening Gallery ...");
                     Delay.delay();
-                    Console.WriteLine("Press any key to return to Smart Menu...");
+                    Console.WriteLine("Press any key to return to Smart Menu ...");
                     Console.ReadKey();
-                    Console.Clear();
                     SmartMenu();
                     break;
                 case "3": // Web Browser
-                    Console.WriteLine("Opening Web Browser...");
+                    Console.WriteLine("Opening Web Browser ...");
                     Delay.delay();
-                    Console.WriteLine("Press any key to return to Smart Menu...");
+                    Console.WriteLine("Press any key to return to Smart Menu ...");
                     Console.ReadKey();
-                    Console.Clear();
                     SmartMenu();
                     break;
                 case "4": // Screen Mirroring
-                    Console.WriteLine("Opening Screen Mirroring...");
+                    Console.WriteLine("Opening Screen Mirroring ...");
                     Delay.delay();
-                    Console.WriteLine("Press any key to return to Smart Menu...");
+                    Console.WriteLine("Press any key to return to Smart Menu ...");
                     Console.ReadKey();
-                    Console.Clear();
                     SmartMenu();
                     break;
                 case "5": // Voice Assistant
-                    Console.WriteLine("Opening Voice Assistant...");
+                    Console.WriteLine("Opening Voice Assistant ...");
                     Delay.delay();
-                    Console.WriteLine("Press any key to return to Smart Menu...");
+                    Console.WriteLine("Press any key to return to Smart Menu ...");
                     Console.ReadKey();
-                    Console.Clear();
                     SmartMenu();
                     break;
                 case "0": // Exit Smart Menu
-                    Console.WriteLine("Exiting Smart Menu...");
+                    Console.WriteLine("Exiting Smart Menu ...");
                     screen.TVStatus();
                     break;
                 default: // Invalid Command
                     Console.WriteLine("Invalid Command. Please try again.");
-                    screen.TVStatus();
+                    SmartMenu();
                     break;
             }
 
@@ -331,7 +334,7 @@ namespace Project1
             {
                 case "1": // Picture Mode
                     screen.SettingStatus();
-                    Console.WriteLine("Opening Picture Mode..."); // Picture Mode Settings Menu
+                    Console.WriteLine("Opening Picture Mode ..."); // Picture Mode Settings Menu
                     Delay.delay();
                     Console.WriteLine("");
                     Console.WriteLine("Picture Mode Settings");
@@ -349,7 +352,7 @@ namespace Project1
                     switch (picmodecmd) // Picture Mode Settings
                     {
                         case "1": // Standard Picture Mode
-                            Console.WriteLine("Setting Picture Mode to Standard...\n");
+                            Console.WriteLine("Setting Picture Mode to Standard ...\n");
                             if (this.screen.PictureMode == "Standard")
                             {
                                 Console.WriteLine("Picture Mode is already set to Standard.");
@@ -360,11 +363,10 @@ namespace Project1
                                 Console.WriteLine("Picture Mode set to Standard.");
                             }
                             Delay.delay();
-                            Console.Clear();
                             Settings();
                             break;
                         case "2": // Dynamic Picture Mode
-                            Console.WriteLine("Setting Picture Mode to Dynamic...\n");
+                            Console.WriteLine("Setting Picture Mode to Dynamic ...\n");
                             if (this.screen.PictureMode == "Dynamic")
                             {
                                 Console.WriteLine("Picture Mode is already set to Dynamic.");
@@ -375,11 +377,10 @@ namespace Project1
                                 Console.WriteLine("Picture Mode set to Dynamic.");
                             }
                             Delay.delay();
-                            Console.Clear();
                             Settings();
                             break;
                         case "3": // Natural Picture Mode
-                            Console.WriteLine("Setting Picture Mode to Natural...\n");
+                            Console.WriteLine("Setting Picture Mode to Natural ...\n");
                             if (this.screen.PictureMode == "Natural")
                             {
                                 Console.WriteLine("Picture Mode is already set to Natural.");
@@ -390,11 +391,10 @@ namespace Project1
                                 Console.WriteLine("Picture Mode set to Natural.");
                             }
                             Delay.delay();
-                            Console.Clear();
                             Settings();
                             break;
                         case "4": // Movie Picture Mode
-                            Console.WriteLine("Setting Picture Mode to Movie...\n");
+                            Console.WriteLine("Setting Picture Mode to Movie ...\n");
                             if (this.screen.PictureMode == "Movie")
                             {
                                 Console.WriteLine("Picture Mode is already set to Movie.");
@@ -405,11 +405,10 @@ namespace Project1
                                 Console.WriteLine("Picture Mode set to Movie.");
                             }
                             Delay.delay();
-                            Console.Clear();
                             Settings();
                             break;
                         case "5": // Game Picture Mode
-                            Console.WriteLine("Setting Picture Mode to Game...\n");
+                            Console.WriteLine("Setting Picture Mode to Game ...\n");
                             if (this.screen.PictureMode == "Game") // Check if picture mode is already set
                             {
                                 Console.WriteLine("Picture Mode is already set to Game.");
@@ -420,22 +419,22 @@ namespace Project1
                                 Console.WriteLine("Picture Mode set to Game.");
                             }
                             Delay.delay();
-                            Console.Clear();
                             Settings();
                             break;
                         case "0": // Exit Picture Mode
-                            Console.WriteLine("Exiting Settings...");
+                            Console.WriteLine("Exiting Settings ...");
                             Console.WriteLine();
                             screen.TVStatus();
                             break;
                         default: // Invalid Command
                             Console.WriteLine("Invalid Command. Please try again.");
+                                    Settings();
                             break;
                     }
                     break;
                 case "2": // Sound Mode
                     screen.SettingStatus();
-                    Console.WriteLine("Opening Sound Mode...");
+                    Console.WriteLine("Opening Sound Mode ...");
                     Delay.delay();
                     Console.WriteLine("");
                     Console.WriteLine("Sound Mode Settings"); // Sound Mode Settings Menu
@@ -453,7 +452,7 @@ namespace Project1
                     switch (soundmodecmd) // Sound Mode Settings
                     {
                         case "1": // Standard Sound Mode
-                            Console.WriteLine("Setting Sound Mode to Standard...\n");
+                            Console.WriteLine("Setting Sound Mode to Standard ...\n");
                             if (this.screen.SoundMode == "Standard") // Check if sound mode is already set
                             {
                                 Console.WriteLine("Sound Mode is already set to Standard.");
@@ -464,11 +463,10 @@ namespace Project1
                                 Console.WriteLine("Sound Mode set to Standard.");
                             }
                             Delay.delay();
-                            Console.Clear();
                             Settings();
                             break;
                         case "2": // Music Sound Mode
-                            Console.WriteLine("Setting Sound Mode to Music...\n");
+                            Console.WriteLine("Setting Sound Mode to Music ...\n");
                             if (this.screen.SoundMode == "Music") // Check if sound mode is already set
                             {
                                 Console.WriteLine("Sound Mode is already set to Music.");
@@ -479,11 +477,10 @@ namespace Project1
                                 Console.WriteLine("Sound Mode set to Music.");
                             }
                             Delay.delay();
-                            Console.Clear();
                             Settings();
                             break;
                         case "3": // Movie Sound Mode
-                            Console.WriteLine("Setting Sound Mode to Movie...\n");
+                            Console.WriteLine("Setting Sound Mode to Movie ...\n");
                             if (this.screen.SoundMode == "Movie") // Check if sound mode is already set
                             {
                                 Console.WriteLine("Sound Mode is already set to Movie.");
@@ -494,11 +491,10 @@ namespace Project1
                                 Console.WriteLine("Sound Mode set to Movie.");
                             }
                             Delay.delay();
-                            Console.Clear();
                             Settings();
                             break;
                         case "4": // Clear Voice Sound Mode
-                            Console.WriteLine("Setting Sound Mode to Clear Voice...\n");
+                            Console.WriteLine("Setting Sound Mode to Clear Voice ...\n");
                             if (this.screen.SoundMode == "Clear Voice") // Check if sound mode is already set
                             {
                                 Console.WriteLine("Sound Mode is already set to Clear Voice.");
@@ -509,11 +505,10 @@ namespace Project1
                                 Console.WriteLine("Sound Mode set to Clear Voice.");
                             }
                             Delay.delay();
-                            Console.Clear();
                             Settings();
                             break;
                         case "5": // Amplify Sound Mode
-                            Console.WriteLine("Setting Sound Mode to Amplify...\n");
+                            Console.WriteLine("Setting Sound Mode to Amplify ...\n");
                             if (this.screen.SoundMode == "Amplify") // Check if sound mode is already set
                             {
                                 Console.WriteLine("Sound Mode is already set to Amplify.");
@@ -524,17 +519,21 @@ namespace Project1
                                 Console.WriteLine("Sound Mode set to Amplify.");
                             }
                             Delay.delay();
-                            Console.Clear();
+                            Settings();
+                            break;
+                        case "0": // Exit Sound Mode
+                            Console.WriteLine("Exiting Sound Mode ...");
                             Settings();
                             break;
                         default: // Invalid Command
                             Console.WriteLine("Invalid Command. Please try again.");
+                                    Settings();
                             break;
                     }
                     break;
                 case "3": // Network Settings
                     screen.SettingStatus();
-                    Console.WriteLine("Opening Network...");
+                    Console.WriteLine("Opening Network ...");
                     Delay.delay();
                     Console.WriteLine("");
                     Console.WriteLine("Network Settings"); // Network Settings Menu
@@ -562,7 +561,7 @@ namespace Project1
                             switch (wificmd) // Wi-Fi Settings
                             {
                                 case "1": // Connect Wi-Fi
-                                    Console.WriteLine("Connecting to Wi-Fi...\n");
+                                    Console.WriteLine("Connecting to Wi-Fi ...\n");
                                     if (this.screen.Wifi == "Connected") // Check if Wi-Fi is already connected
                                     {
                                         Console.WriteLine("Wi-Fi is already connected.");
@@ -573,11 +572,10 @@ namespace Project1
                                         Console.WriteLine("Wi-Fi connected.");
                                     }
                                     Delay.delay();
-                                    Console.Clear();
                                     Settings();
                                     break;
                                 case "2": // Disconnect Wi-Fi
-                                    Console.WriteLine("Disconnecting from Wi-Fi...\n");
+                                    Console.WriteLine("Disconnecting from Wi-Fi ...\n");
                                     if (this.screen.Wifi == "Disconnected") // Check if Wi-Fi is already disconnected
                                     {
                                         Console.WriteLine("Wi-Fi is already disconnected.");
@@ -588,17 +586,16 @@ namespace Project1
                                         Console.WriteLine("Wi-Fi disconnected.");
                                     }
                                     Delay.delay();
-                                    Console.Clear();
                                     Settings();
                                     break;
                                 case "0": // Exit Wi-Fi
-                                    Console.WriteLine("Exiting Settings...");
+                                    Console.WriteLine("Exiting Settings ...");
                                     Console.WriteLine();
-                                    screen.SettingStatus();
                                     Settings();
                                     break;
                                 default: // Invalid Command
                                     Console.WriteLine("Invalid Command. Please try again.");
+                                    Settings();
                                     break;
                             }
                             break;
@@ -616,7 +613,7 @@ namespace Project1
                             switch (btcmd) // Bluetooth Settings
                             {
                                 case "1": // Connect Bluetooth
-                                    Console.WriteLine("Connecting to Bluetooth...");
+                                    Console.WriteLine("Connecting to Bluetooth ...");
                                     if (this.screen.Bluetooth == "Connected") // Check if Bluetooth is already connected
                                     {
                                         Console.WriteLine("Bluetooth is already connected.");
@@ -627,11 +624,10 @@ namespace Project1
                                         Console.WriteLine("Bluetooth connected.");
                                     }
                                     Delay.delay();
-                                    Console.Clear();
                                     Settings();
                                     break;
                                 case "2": // Disconnect Bluetooth
-                                    Console.WriteLine("Disconnecting from Bluetooth...");
+                                    Console.WriteLine("Disconnecting from Bluetooth ...");
                                     if (this.screen.Bluetooth == "Disconnected") // Check if Bluetooth is already disconnected
                                     {
                                         Console.WriteLine("Bluetooth is already disconnected.");
@@ -642,28 +638,25 @@ namespace Project1
                                         Console.WriteLine("Bluetooth disconnected.");
                                     }
                                     Delay.delay();
-                                    Console.Clear();
                                     Settings();
                                     break;
                                 case "0": // Exit Bluetooth
-                                    Console.WriteLine("Exiting Settings...");
-                                    Console.WriteLine();
-                                    screen.SettingStatus();
+                                    Console.WriteLine("Exiting Settings ...");
                                     Settings();
                                     break;
                                 default: // Invalid Command
                                     Console.WriteLine("Invalid Command. Please try again.");
+                                    Settings();
                                     break;
                             }
                             break;
                         case "0": // Exit Network
-                            Console.WriteLine("Exiting Settings...");
-                            Console.WriteLine();
-                            screen.SettingStatus();
+                            Console.WriteLine("Exiting Network ...");
                             Settings();
                             break;
                         default: // Invalid Command
                             Console.WriteLine("Invalid Command. Please try again.");
+                            Settings();
                             break;
                     }
                     break;
@@ -687,7 +680,7 @@ namespace Project1
                     switch (modelcmd) // Model Selection
                     {
                         case "1": // Model 75TU7000
-                            Console.WriteLine("Setting Model to 75TU7000...");
+                            Console.WriteLine("Setting Model to 75TU7000 ...");
                             if (this.screen.Model == "75TU7000") // Check if model is already set
                             {
                                 Console.WriteLine("Model is already set to 75TU7000.");
@@ -698,11 +691,10 @@ namespace Project1
                                 Console.WriteLine("Model set to 75TU7000.");
                             }
                             Delay.delay();
-                            Console.Clear();
                             Settings();
                             break;
                         case "2": // Model 70TU7000
-                            Console.WriteLine("Setting Model to 70TU7000...");
+                            Console.WriteLine("Setting Model to 70TU7000 ...");
                             if (this.screen.Model == "70TU7000") // Check if model is already set
                             {
                                 Console.WriteLine("Model is already set to 70TU7000.");
@@ -713,11 +705,10 @@ namespace Project1
                                 Console.WriteLine("Model set to 70TU7000.");
                             }
                             Delay.delay();
-                            Console.Clear();
                             Settings();
                             break;
                         case "3": // Model 65TU7000
-                            Console.WriteLine("Setting Model to 65TU7000...");
+                            Console.WriteLine("Setting Model to 65TU7000 ...");
                             if (this.screen.Model == "65TU7000") // Check if model is already set
                             {
                                 Console.WriteLine("Model is already set to 65TU7000.");
@@ -728,11 +719,10 @@ namespace Project1
                                 Console.WriteLine("Model set to 65TU7000.");
                             }
                             Delay.delay();
-                            Console.Clear();
                             Settings();
                             break;
                         case "4": // Model 58TU7000
-                            Console.WriteLine("Setting Model to 58TU7000...");
+                            Console.WriteLine("Setting Model to 58TU7000 ...");
                             if (this.screen.Model == "58TU7000") // Check if model is already set
                             {
                                 Console.WriteLine("Model is already set to 58TU7000.");
@@ -743,11 +733,10 @@ namespace Project1
                                 Console.WriteLine("Model set to 58TU7000.");
                             }
                             Delay.delay();
-                            Console.Clear();
                             Settings();
                             break;
                         case "5": // Model 55TU7000
-                            Console.WriteLine("Setting Model to UN55TU7000...");
+                            Console.WriteLine("Setting Model to UN55TU7000 ...");
                             if (this.screen.Model == "55TU7000") // Check if model is already set
                             {
                                 Console.WriteLine("Model is already set to 55TU7000.");
@@ -758,11 +747,10 @@ namespace Project1
                                 Console.WriteLine("Model set to 55TU7000.");
                             }
                             Delay.delay();
-                            Console.Clear();
                             Settings();
                             break;
                         case "6": // Model 50TU7000
-                            Console.WriteLine("Setting Model to UN50TU7000...");
+                            Console.WriteLine("Setting Model to UN50TU7000 ...");
                             if (this.screen.Model == "50TU7000")
                             {
                                 Console.WriteLine("Model is already set to 50TU7000."); // Check if model is already set
@@ -773,11 +761,10 @@ namespace Project1
                                 Console.WriteLine("Model set to 50TU7000.");
                             }
                             Delay.delay();
-                            Console.Clear();
                             Settings();
                             break;
                         case "7": // Model 43TU7000
-                            Console.WriteLine("Setting Model to UN43TU7000...");
+                            Console.WriteLine("Setting Model to UN43TU7000 ...");
                             if (this.screen.Model == "43TU7000") // Check if model is already set
                             {
                                 Console.WriteLine("Model is already set to 43TU7000.");
@@ -788,22 +775,20 @@ namespace Project1
                                 Console.WriteLine("Model set to 43TU7000.");
                             }
                             Delay.delay();
-                            Console.Clear();
                             Settings();
                             break;
                         case "0": // Exit Settings
-                            Console.WriteLine("Exiting Settings...");
-                            Console.WriteLine();
-                            screen.TVStatus();
+                            Console.WriteLine("Exiting Model Selection ...");
+                            Settings();
                             break;
                         default: // Invalid Command
                             Console.WriteLine("Invalid Command. Please try again.");
+                            Settings();
                             break;
                     }
                     break;
                 case "0": // Exit Settings
-                    Console.WriteLine("Exiting Settings...");
-                    Console.WriteLine();
+                    Console.WriteLine("Exiting Settings ...");
                     screen.TVStatus();
                     break;
                 default: // Invalid Command
@@ -858,13 +843,13 @@ namespace Project1
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to the TV Remote Control Program by Chance Chime");
-            Console.WriteLine("Booting up...");
+            Console.WriteLine("Booting up ...");
 
             Delay.delay(200);
-            Console.WriteLine("\n   ...");
+            Console.WriteLine("\n           ...");
             Delay.delay(200);
-            Console.WriteLine("\n   ...");
-            Delay.delay(1000);
+            Console.WriteLine("\n           ...");
+            Delay.delay(5);
 
             Screen screen = new Screen();
             Remote remote = new Remote(screen);
@@ -926,7 +911,7 @@ namespace Project1
                     case "7": // Change Channel
                         if (screen.Power == PowerStatus.Off)
                         {
-                            Console.WriteLine("TV is Off. Unable to change channel.");
+                            Console.WriteLine("TV is Off. Unable to change Channel.");
                             Delay.delay();
                             screen.TVStatus();
                             break;
@@ -936,12 +921,12 @@ namespace Project1
                         for (int i = 1; i <= 55; i++)
                         {
                             Console.Write(Remote.DisplayChannelList(i));
-                            if (i % 5 == 0)
+                            if (i % 4 == 0)
                             {
                                 Console.WriteLine();
                             }
                             else
-                            {
+                            {  
                                 Console.Write("  ||  ");
                             }
                         }
@@ -986,7 +971,7 @@ namespace Project1
                         remote.Settings();
                         break;
                     case "0": // Exit Program
-                        Console.WriteLine("Exiting Program...\n");
+                        Console.WriteLine("Exiting Program ...\n");
                         exit = true;
                         break;
                     default: // Invalid Command
