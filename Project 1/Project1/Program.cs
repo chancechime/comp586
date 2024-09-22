@@ -6,84 +6,20 @@ using System;
 
 namespace Project1
 {
-    public enum MuteStatus // Mute Status
-    {
-        Muted,
-        Unmuted
-    }
+    public enum MuteStatus { Muted, Unmuted } // Mute Status
 
-    public enum PowerStatus // Power Status
-    {
-        On,
-        Off
-    }
+    public enum PowerStatus { On, Off } // Power Status
 
-    public enum ChannelDirectory // Channel Directory
-    {
-        News,
-        Sports,
-        Movies,
-        Music,
-        Kids,
-        Food,
-        Shopping,
-        Travel,
-        Education,
-        Lifestyle,
-        Technology,
-        Gaming,
-        Fitness,
-        Religion,
-        Weather,
-        Documentary,
-        History,
-        Science,
-        Nature,
-        Fashion,
-        Comedy,
-        Drama,
-        Reality,
-        TalkShow,
-        GameShow,
-        SoapOpera,
-        Sitcom,
-        Horror,
-        Thriller,
-        Action,
-        Adventure,
-        Mystery,
-        Romance,
-        Western,
-        War,
-        Crime,
-        Legal,
-        Medical,
-        Police,
-        Military,
-        Espionage,
-        Superhero,
-        Fantasy,
-        ScienceFiction,
-        Animation,
-        Family,
-        Musical,
-        Dance,
-        Theatre,
-        Variety,
-        Awards,
-        Cooking,
-        Canada,
-        Overseas,
-        Northridge
-    }
+    public enum ChannelDirectory { News, Sports, Movies, Music, Kids, Food, Shopping, Travel, Education, Lifestyle, Technology, Gaming, Fitness, Religion, Weather, Documentary, History, Science, Nature, Fashion, Comedy, Drama, Reality, TalkShow, GameShow, SoapOpera, Sitcom, Horror, Thriller, Action, Adventure, Mystery, Romance, Western, War, Crime, Legal, Medical, Police, Military, Espionage, Superhero, Fantasy, ScienceFiction, Animation, Family, Musical, Dance, Theatre, Variety, Awards, Cooking, Canada, Overseas, Northridge }
 
-    public class Delay // Method to delay output, made to simulate TV response time and for personal preference
+    public class Delay
     {
-        public static void delay(int ms = 750) // Delay Method
+        public static void delay(int ms = 550)
         {
             System.Threading.Thread.Sleep(ms);
         }
     }
+
 
     public class Remote // Remote Control Class
     {
@@ -100,29 +36,31 @@ namespace Project1
         }
         public void Power() // Power On/Off Method
         {
+            screen.TVStatus();
             this.screen.Power = this.screen.Power == PowerStatus.On ? PowerStatus.Off : PowerStatus.On; // Toggles Power
             Console.WriteLine($"TV Power: {this.screen.Power}");
         }
-        public void Volume(int vol) // Volume Adjustment Method
+        public void Volume(int vol)// Volume Adjustment Method
         {
+            screen.TVStatus();
             if (this.screen.Power == PowerStatus.On) // Check if TV is on
             {
                 switch (vol) // Volume Adjustment
                 {
                     case 1 when this.screen.Volume < 20: // Increase Volume
                         this.screen.Volume++;
-                        Console.WriteLine($"Volume: {this.screen.Volume}|20");
+                        Console.WriteLine($"Volume: {this.screen.Volume}|20 {(this.screen.Mute == MuteStatus.Muted ? " (MUTED)" : "")}");
                         break;
                     case 1 when this.screen.Volume >= 20: // Volume is at max level
-                        Console.WriteLine("Volume is at max level. (20|20)");
+                        Console.WriteLine($"Volume is at max level. (20|20) {(this.screen.Mute == MuteStatus.Muted ? " (MUTED)" : "")}");
                         break;
 
                     case 0 when this.screen.Volume > 0: // Decrease Volume
                         this.screen.Volume--;
-                        Console.WriteLine($"Volume: {this.screen.Volume}|20");
+                        Console.WriteLine($"Volume: {this.screen.Volume}|20 {(this.screen.Mute == MuteStatus.Muted ? " (MUTED)" : "")}");
                         break;
                     case 0 when this.screen.Volume <= 0: // Volume is at min level
-                        Console.WriteLine("Volume is at min level. (0|20)");
+                        Console.WriteLine($"Volume is at min level. (0|20) {(this.screen.Mute == MuteStatus.Muted ? " (MUTED)" : "")}");
                         break;
 
                     default: // Invalid Volume Adjustment
@@ -130,13 +68,11 @@ namespace Project1
                         break;
                 }
             }
-            else
-            {
-                Console.WriteLine("TV is Off. Unable to adjust Volume.");
-            }
+            else { Console.WriteLine("TV is Off. Unable to adjust Volume."); }
         }
         public void Channel(int channel) // Change Channel Method
         {
+            screen.TVStatus();
             switch (channel) // Change Channel
             {
                 case 0: // Increase Channel
@@ -178,6 +114,7 @@ namespace Project1
         }
         public void Mute() // Mute/Unmute
         {
+            screen.TVStatus();
             if (this.screen.Power == PowerStatus.On) // Check if TV is on
             {
                 this.screen.Mute = this.screen.Mute == MuteStatus.Muted ? MuteStatus.Unmuted : MuteStatus.Muted; // Toggles Mute
@@ -324,11 +261,13 @@ namespace Project1
             Console.WriteLine("   2 - Sound Mode");
             Console.WriteLine("   3 - Network");
             Console.WriteLine("   4 - Model Selection");
+            Console.WriteLine("   5 - Input Mode");
             Console.WriteLine("   0 - Exit");
             Console.WriteLine("\nEnter a command:");
 
             string settingscmd = Console.ReadLine()!;
             Console.WriteLine();
+            screen.SettingStatus();
 
             switch (settingscmd) // Settings Menu
             {
@@ -428,7 +367,7 @@ namespace Project1
                             break;
                         default: // Invalid Command
                             Console.WriteLine("Invalid Command. Please try again.");
-                                    Settings();
+                            Settings();
                             break;
                     }
                     break;
@@ -527,7 +466,7 @@ namespace Project1
                             break;
                         default: // Invalid Command
                             Console.WriteLine("Invalid Command. Please try again.");
-                                    Settings();
+                            Settings();
                             break;
                     }
                     break;
@@ -787,6 +726,75 @@ namespace Project1
                             break;
                     }
                     break;
+                case "5": // Input Mode
+                    screen.SettingStatus();
+                    Console.WriteLine("Opening Input Mode ...");
+                    Delay.delay();
+                    Console.WriteLine("");
+                    Console.WriteLine("Input Mode Settings"); // Input Mode Settings Menu
+                    Console.WriteLine("   1 - HDMI 1");
+                    Console.WriteLine("   2 - HDMI 2");
+                    Console.WriteLine("   3 - USB");
+                    Console.WriteLine("   0 - Exit");
+                    Console.WriteLine("\nEnter a command:");
+
+                    string inputcmd = Console.ReadLine()!;
+                    Console.WriteLine();
+
+                    switch (inputcmd) // Input Mode Settings
+                    {
+                        case "1": // HDMI 1
+                            Console.WriteLine("Setting Input Mode to HDMI 1 ...");
+                            if (this.screen.InputMode == "HDMI 1") // Check if input mode is already set
+                            {
+                                Console.WriteLine("Input Mode is already set to HDMI 1.");
+                            }
+                            else
+                            {
+                                this.screen.InputMode = "HDMI 1";
+                                Console.WriteLine("Input Mode set to HDMI 1.");
+                            }
+                            Delay.delay();
+                            Settings();
+                            break;
+                        case "2": // HDMI 2
+                            Console.WriteLine("Setting Input Mode to HDMI 2 ...");
+                            if (this.screen.InputMode == "HDMI 2") // Check if input mode is already set
+                            {
+                                Console.WriteLine("Input Mode is already set to HDMI 2.");
+                            }
+                            else
+                            {
+                                this.screen.InputMode = "HDMI 2";
+                                Console.WriteLine("Input Mode set to HDMI 2.");
+                            }
+                            Delay.delay();
+                            Settings();
+                            break;
+                        case "3": // USB
+                            Console.WriteLine("Setting Input Mode to USB ...");
+                            if (this.screen.InputMode == "USB") // Check if input mode is already set
+                            {
+                                Console.WriteLine("Input Mode is already set to USB.");
+                            }
+                            else
+                            {
+                                this.screen.InputMode = "USB";
+                                Console.WriteLine("Input Mode set to USB.");
+                            }
+                            Delay.delay();
+                            Settings();
+                            break;
+                        case "0": // Exit Input Mode
+                            Console.WriteLine("Exiting Input Mode ...");
+                            Settings();
+                            break;
+                        default: // Invalid Command
+                            Console.WriteLine("Invalid Command. Please try again.");
+                            Settings();
+                            break;
+                    }
+                    break;
                 case "0": // Exit Settings
                     Console.WriteLine("Exiting Settings ...");
                     screen.TVStatus();
@@ -809,6 +817,7 @@ namespace Project1
         public string SoundMode { get; set; } = "Standard"; // Default is Standard
         public string Wifi { get; set; } = "Connected"; // Default is connected
         public string Bluetooth { get; set; } = "Connected"; // Default is connected
+        public string InputMode { get; set; } = "HDMI 1"; // Default is HDMI 1
 
 
         public void TVStatus() // TV Status
@@ -834,6 +843,7 @@ namespace Project1
             Console.WriteLine($"   Wifi: {Wifi}");
             Console.WriteLine($"   Bluetooth: {Bluetooth}");
             Console.WriteLine($"   Model Selection: {Model}");
+            Console.WriteLine($"   Input Mode: {InputMode}");
             Console.WriteLine();
         }
     }
@@ -842,8 +852,8 @@ namespace Project1
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Welcome to the TV Remote Control Program by Chance Chime");
-            Console.WriteLine("Booting up ...");
+            Console.WriteLine("Welcome to the TV Remote Control Program (Remote Model: TM-1240A)"); // Welcome Message
+            Console.WriteLine("\nBooting up ...");
 
             Delay.delay(200);
             Console.WriteLine("\n           ...");
@@ -859,7 +869,7 @@ namespace Project1
 
             while (!exit)
             {
-                Delay.delay(1);
+                Delay.delay(5);
                 Console.WriteLine("TV Remote Control Commands:"); // TV Remote Menu
                 Console.WriteLine("   1 - Power On / Off");
                 Console.WriteLine("   2 - Increase Volume");
@@ -924,13 +934,14 @@ namespace Project1
                             if (i % 4 == 0)
                             {
                                 Console.WriteLine();
+                                Delay.delay(15);
                             }
                             else
-                            {  
+                            {
                                 Console.Write("  ||  ");
                             }
                         }
-                        Console.WriteLine("\nEnter the channel number:");
+                        Console.WriteLine("\n\nEnter the channel number:");
                         int newChannel;
                         if (int.TryParse(Console.ReadLine(), out newChannel))
                         {
@@ -971,10 +982,16 @@ namespace Project1
                         remote.Settings();
                         break;
                     case "0": // Exit Program
+                        screen.TVStatus();
                         Console.WriteLine("Exiting Program ...\n");
                         exit = true;
+                        Console.WriteLine("Goodbye!\n");
+                        Delay.delay();
+                        Console.Clear();
+                        System.Environment.Exit(0);
                         break;
                     default: // Invalid Command
+                        screen.TVStatus();
                         Console.WriteLine("Invalid Command. Please try again.");
                         screen.TVStatus();
                         break;

@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/justchance/Desktop/classes/comp586/Project 1/Project1.csproj",
+      "projectUniqueName": "/Users/justchance/Desktop/classes/comp586/Project 1/Project1/Project1.csproj",
       "projectName": "Project1",
-      "projectPath": "/Users/justchance/Desktop/classes/comp586/Project 1/Project1.csproj",
+      "projectPath": "/Users/justchance/Desktop/classes/comp586/Project 1/Project1/Project1.csproj",
       "packagesPath": "/Users/justchance/.nuget/packages/",
-      "outputPath": "/Users/justchance/Desktop/classes/comp586/Project 1/obj/",
+      "outputPath": "/Users/justchance/Desktop/classes/comp586/Project 1/Project1/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/justchance/.nuget/NuGet/NuGet.Config"
