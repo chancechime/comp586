@@ -20,7 +20,6 @@ namespace Project1
         }
     }
 
-
     public class Remote // Remote Control Class
     {
         private Screen screen; // Screen Field
@@ -70,10 +69,10 @@ namespace Project1
             }
             else { Console.WriteLine("TV is Off. Unable to adjust Volume."); }
         }
-        public void Channel(int channel) // Change Channel Method
+        public void Channel(int chn) // Change Channel Method
         {
             screen.TVStatus();
-            switch (channel) // Change Channel
+            switch (chn) // Change Channel
             {
                 case 0: // Increase Channel
                     if (this.screen.Power == PowerStatus.On)
@@ -102,7 +101,7 @@ namespace Project1
                 default: // Change to specific channel
                     if (this.screen.Power == PowerStatus.On) // Check if TV is on
                     {
-                        this.screen.Channel = channel;
+                        this.screen.Channel = chn;
                         Console.WriteLine($"{DisplayChannelList(this.screen.Channel)}"); //  Display Channel
                     }
                     else
