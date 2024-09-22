@@ -1,2 +1,5 @@
-./Project 1/bin/.
-./Project 1/obj/.
+./Project 1/bin
+./Project 1/obj
+./Project 1/bin/Debug
+./Project 1/obj/Debug
+./Project 1/Debug/net8.0
