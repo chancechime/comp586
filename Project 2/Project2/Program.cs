@@ -178,60 +178,178 @@ namespace Project2
         public string SoundMode { get; set; } = "Standard";
         public string Wifi { get; set; } = "Connected";
         public string Bluetooth { get; set; } = "Connected";
-        public string ModelSelection { get; set; } = "75TU7000";
         public string InputMode { get; set; } = "HDMI 1";
     }
 
     // Builder class for Screen
-    public class ScreenBuilder
+    public interface IScreenFactory
     {
-        private Screen _screen = new Screen();
+        string Model();
+        bool Power();
+        int Volume();
+        int Channel();
+        bool Mute();
+        bool SmartMenu();
+        bool Settings();
+        bool Exit();
 
-        public ScreenBuilder SetModel(string model)
-        {
-            _screen.Model = model;
-            return this;
-        }
+        string PictureMode();
+        string SoundMode();
+        string Wifi();
+        string Bluetooth();
+        string InputMode();
+    }
 
-        public ScreenBuilder SetPower(bool power)
-        {
-            _screen.Power = power;
-            return this;
-        }
+    class Model75TU7000 : IScreenFactory
+    {
+        public string Model() => "75TU7000";
+        public bool Power() => false;
+        public int Volume() => 10;
+        public int Channel() => 1;
+        public bool Mute() => false;
+        public bool SmartMenu() => false;
+        public bool Settings() => false;
+        public bool Exit() => false;
+        public string PictureMode() => "Standard";
+        public string SoundMode() => "Standard";
+        public string Wifi() => "Connected";
+        public string Bluetooth() => "Connected";
+        public string InputMode() => "HDMI 1";
+    }
 
-        public ScreenBuilder SetVolume(int volume)
-        {
-            _screen.Volume = volume;
-            return this;
-        }
+    class Model70TU7000 : IScreenFactory
+    {
+        public string Model() => "70TU7000";
+        public bool Power() => false;
+        public int Volume() => 10;
+        public int Channel() => 1;
+        public bool Mute() => false;
+        public bool SmartMenu() => false;
+        public bool Settings() => false;
+        public bool Exit() => false;
+        public string PictureMode() => "Standard";
+        public string SoundMode() => "Standard";
+        public string Wifi() => "Connected";
+        public string Bluetooth() => "Connected";
+        public string InputMode() => "HDMI 1";
+    }
 
-        public ScreenBuilder SetChannel(int channel)
-        {
-            _screen.Channel = channel;
-            return this;
-        }
+    class Model65TU7000 : IScreenFactory
+    {
+        public string Model() => "65TU7000";
+        public bool Power() => false;
+        public int Volume() => 10;
+        public int Channel() => 1;
+        public bool Mute() => false;
+        public bool SmartMenu() => false;
+        public bool Settings() => false;
+        public bool Exit() => false;
+        public string PictureMode() => "Standard";
+        public string SoundMode() => "Standard";
+        public string Wifi() => "Connected";
+        public string Bluetooth() => "Connected";
+        public string InputMode() => "HDMI 1";
+    }
 
-        public ScreenBuilder SetMute(bool mute)
-        {
-            _screen.Mute = mute;
-            return this;
-        }
+    class Model58TU7000 : IScreenFactory
+    {
+        public string Model() => "58TU7000";
+        public bool Power() => false;
+        public int Volume() => 10;
+        public int Channel() => 1;
+        public bool Mute() => false;
+        public bool SmartMenu() => false;
+        public bool Settings() => false;
+        public bool Exit() => false;
+        public string PictureMode() => "Standard";
+        public string SoundMode() => "Standard";
+        public string Wifi() => "Connected";
+        public string Bluetooth() => "Connected";
+        public string InputMode() => "HDMI 1";
+    }
 
-        public ScreenBuilder SetSmartMenu(bool smartMenu)
-        {
-            _screen.SmartMenu = smartMenu;
-            return this;
-        }
+    class Model55TU7000 : IScreenFactory
+    {
+        public string Model() => "55TU7000";
+        public bool Power() => false;
+        public int Volume() => 10;
+        public int Channel() => 1;
+        public bool Mute() => false;
+        public bool SmartMenu() => false;
+        public bool Settings() => false;
+        public bool Exit() => false;
+        public string PictureMode() => "Standard";
+        public string SoundMode() => "Standard";
+        public string Wifi() => "Connected";
+        public string Bluetooth() => "Connected";
+        public string InputMode() => "HDMI 1";
+    }
 
-        public ScreenBuilder SetSettings(bool settings)
-        {
-            _screen.Settings = settings;
-            return this;
-        }
+    class Model50TU7000 : IScreenFactory
+    {
+        public string Model() => "50TU7000";
+        public bool Power() => false;
+        public int Volume() => 10;
+        public int Channel() => 1;
+        public bool Mute() => false;
+        public bool SmartMenu() => false;
+        public bool Settings() => false;
+        public bool Exit() => false;
+        public string PictureMode() => "Standard";
+        public string SoundMode() => "Standard";
+        public string Wifi() => "Connected";
+        public string Bluetooth() => "Connected";
+        public string InputMode() => "HDMI 1";
+    }
 
-        public Screen Build()
+    class Model43TU7000 : IScreenFactory
+    {
+        public string Model() => "43TU7000";
+        public bool Power() => false;
+        public int Volume() => 10;
+        public int Channel() => 1;
+        public bool Mute() => false;
+        public bool SmartMenu() => false;
+        public bool Settings() => false;
+        public bool Exit() => false;
+        public string PictureMode() => "Standard";
+        public string SoundMode() => "Standard";
+        public string Wifi() => "Connected";
+        public string Bluetooth() => "Connected";
+        public string InputMode() => "HDMI 1";
+    }
+    class ScreenFactory
+    {
+        public static IScreenFactory getScreen(string type)
         {
-            return _screen;
+            IScreenFactory? screen = null;
+            switch (type.ToLower())
+            {
+                case "75tu7000":
+                    screen = new Model75TU7000();
+                    break;
+                case "70tu7000":
+                    screen = new Model70TU7000();
+                    break;
+                case "65tu7000":
+                    screen = new Model65TU7000();
+                    break;
+                case "58tu7000":
+                    screen = new Model58TU7000();
+                    break;
+                case "55tu7000":
+                    screen = new Model55TU7000();
+                    break;
+                case "50tu7000":
+                    screen = new Model50TU7000();
+                    break;
+                case "43tu7000":
+                    screen = new Model43TU7000();
+                    break;
+                default:
+                    throw new ArgumentException("Invalid screen type");
+            }
+            return screen;
         }
     }
 
@@ -519,364 +637,371 @@ namespace Project2
             _screen.Settings = true;
             while (_screen.Settings)
             {
-            Console.WriteLine("Settings Menu:");
+                Console.WriteLine("Settings Menu:");
 
-            Console.WriteLine("\n   Picture Mode");
-            Console.WriteLine("\t11 - Standard");
-            Console.WriteLine("\t12 - Dynamic");
-            Console.WriteLine("\t13 - Natural");
-            Console.WriteLine("\t14 - Movie");
-            Console.WriteLine("\t15 - Game");
+                Console.WriteLine("\n   Picture Mode");
+                Console.WriteLine("\t11 - Standard");
+                Console.WriteLine("\t12 - Dynamic");
+                Console.WriteLine("\t13 - Natural");
+                Console.WriteLine("\t14 - Movie");
+                Console.WriteLine("\t15 - Game");
 
-            Console.WriteLine("\n   Sound Mode");
-            Console.WriteLine("\t21 - Standard");
-            Console.WriteLine("\t22 - Music");
-            Console.WriteLine("\t23 - Movie");
-            Console.WriteLine("\t24 - Clear Voice");
-            Console.WriteLine("\t25 - Amplify");
+                Console.WriteLine("\n   Sound Mode");
+                Console.WriteLine("\t21 - Standard");
+                Console.WriteLine("\t22 - Music");
+                Console.WriteLine("\t23 - Movie");
+                Console.WriteLine("\t24 - Clear Voice");
+                Console.WriteLine("\t25 - Amplify");
 
-            Console.WriteLine("\n   Wi-Fi Network");
-            Console.WriteLine("\t31 - Connect to Wifi Network");
-            Console.WriteLine("\t32 - Disconnect from Wifi Network");
+                Console.WriteLine("\n   Wi-Fi Network");
+                Console.WriteLine("\t31 - Connect to Wifi Network");
+                Console.WriteLine("\t32 - Disconnect from Wifi Network");
 
-            Console.WriteLine("   Bluetooth");
-            Console.WriteLine("\t41 - Connect to Bluetooth Device");
-            Console.WriteLine("\t42 - Disconnect from Bluetooth Device");
+                Console.WriteLine("   Bluetooth");
+                Console.WriteLine("\t41 - Connect to Bluetooth Device");
+                Console.WriteLine("\t42 - Disconnect from Bluetooth Device");
 
-            Console.WriteLine("\n   Input Mode");
-            Console.WriteLine("\t51 - HDMI 1");
-            Console.WriteLine("\t52 - HDMI 2");
-            Console.WriteLine("\t53 - DisplayPort");
-            Console.WriteLine("\t54 - DVI");
+                Console.WriteLine("\n   Input Mode");
+                Console.WriteLine("\t51 - HDMI 1");
+                Console.WriteLine("\t52 - HDMI 2");
+                Console.WriteLine("\t53 - DisplayPort");
+                Console.WriteLine("\t54 - DVI");
 
-            Console.WriteLine("\n   Model Selection");
-            Console.WriteLine("\t61 - 75TU7000");
-            Console.WriteLine("\t62 - 70TU7000");
-            Console.WriteLine("\t63 - 65TU7000");
-            Console.WriteLine("\t64 - 58TU7000");
-            Console.WriteLine("\t65 - 55TU7000");
-            Console.WriteLine("\t66 - 50TU7000");
-            Console.WriteLine("\t67 - 43TU7000");
+                Console.WriteLine("\n   Model Selection");
+                Console.WriteLine("\t61 - 75TU7000");
+                Console.WriteLine("\t62 - 70TU7000");
+                Console.WriteLine("\t63 - 65TU7000");
+                Console.WriteLine("\t64 - 58TU7000");
+                Console.WriteLine("\t65 - 55TU7000");
+                Console.WriteLine("\t66 - 50TU7000");
+                Console.WriteLine("\t67 - 43TU7000");
 
-            Console.WriteLine("\n   0 - Exit");
-            Console.WriteLine("\nEnter a command:");
+                Console.WriteLine("\n   0 - Exit");
+                Console.WriteLine("\nEnter a command:");
 
-            string? settingscmd = Console.ReadLine();
-            Console.WriteLine();
-            Console.Clear();
+                string? settingscmd = Console.ReadLine();
+                Console.WriteLine();
+                Console.Clear();
 
-            switch (settingscmd)
-            {
-                case "11":
-                Console.WriteLine("Setting Picture Mode to Standard ...\n");
-                if (_screen.PictureMode == "Standard")
+                switch (settingscmd)
                 {
-                    Console.WriteLine("Picture Mode is already set to Standard.");
+                    case "11":
+                        Console.WriteLine("Setting Picture Mode to Standard ...\n");
+                        if (_screen.PictureMode == "Standard")
+                        {
+                            Console.WriteLine("Picture Mode is already set to Standard.");
+                        }
+                        else
+                        {
+                            _screen.PictureMode = "Standard";
+                            Console.WriteLine("Picture Mode set to Standard.");
+                        }
+                        break;
+                    case "12":
+                        Console.WriteLine("Setting Picture Mode to Dynamic ...\n");
+                        if (_screen.PictureMode == "Dynamic")
+                        {
+                            Console.WriteLine("Picture Mode is already set to Dynamic.");
+                        }
+                        else
+                        {
+                            _screen.PictureMode = "Dynamic";
+                            Console.WriteLine("Picture Mode set to Dynamic.");
+                        }
+                        break;
+                    case "13":
+                        Console.WriteLine("Setting Picture Mode to Natural ...\n");
+                        if (_screen.PictureMode == "Natural")
+                        {
+                            Console.WriteLine("Picture Mode is already set to Natural.");
+                        }
+                        else
+                        {
+                            _screen.PictureMode = "Natural";
+                            Console.WriteLine("Picture Mode set to Natural.");
+                        }
+                        break;
+                    case "14":
+                        Console.WriteLine("Setting Picture Mode to Movie ...\n");
+                        if (_screen.PictureMode == "Movie")
+                        {
+                            Console.WriteLine("Picture Mode is already set to Movie.");
+                        }
+                        else
+                        {
+                            _screen.PictureMode = "Movie";
+                            Console.WriteLine("Picture Mode set to Movie.");
+                        }
+                        break;
+                    case "15":
+                        Console.WriteLine("Setting Picture Mode to Game ...\n");
+                        if (_screen.PictureMode == "Game")
+                        {
+                            Console.WriteLine("Picture Mode is already set to Game.");
+                        }
+                        else
+                        {
+                            _screen.PictureMode = "Game";
+                            Console.WriteLine("Picture Mode set to Game.");
+                        }
+                        break;
+                    case "21":
+                        Console.WriteLine("Setting Sound Mode to Standard ...\n");
+                        if (_screen.SoundMode == "Standard")
+                        {
+                            Console.WriteLine("Sound Mode is already set to Standard.");
+                        }
+                        else
+                        {
+                            _screen.SoundMode = "Standard";
+                            Console.WriteLine("Sound Mode set to Standard.");
+                        }
+                        break;
+                    case "22":
+                        Console.WriteLine("Setting Sound Mode to Music ...\n");
+                        if (_screen.SoundMode == "Music")
+                        {
+                            Console.WriteLine("Sound Mode is already set to Music.");
+                        }
+                        else
+                        {
+                            _screen.SoundMode = "Music";
+                            Console.WriteLine("Sound Mode set to Music.");
+                        }
+                        break;
+                    case "23":
+                        Console.WriteLine("Setting Sound Mode to Movie ...\n");
+                        if (_screen.SoundMode == "Movie")
+                        {
+                            Console.WriteLine("Sound Mode is already set to Movie.");
+                        }
+                        else
+                        {
+                            _screen.SoundMode = "Movie";
+                            Console.WriteLine("Sound Mode set to Movie.");
+                        }
+                        break;
+                    case "24":
+                        Console.WriteLine("Setting Sound Mode to Clear Voice ...\n");
+                        if (_screen.SoundMode == "Clear Voice")
+                        {
+                            Console.WriteLine("Sound Mode is already set to Clear Voice.");
+                        }
+                        else
+                        {
+                            _screen.SoundMode = "Clear Voice";
+                            Console.WriteLine("Sound Mode set to Clear Voice.");
+                        }
+                        break;
+                    case "25":
+                        Console.WriteLine("Setting Sound Mode to Amplify ...\n");
+                        if (_screen.SoundMode == "Amplify")
+                        {
+                            Console.WriteLine("Sound Mode is already set to Amplify.");
+                        }
+                        else
+                        {
+                            _screen.SoundMode = "Amplify";
+                            Console.WriteLine("Sound Mode set to Amplify.");
+                        }
+                        break;
+                    case "31":
+                        Console.WriteLine("Connecting to Wifi Network ...\n");
+                        if (_screen.Wifi == "Connected")
+                        {
+                            Console.WriteLine("Already connected to Wifi Network.");
+                        }
+                        else
+                        {
+                            _screen.Wifi = "Connected";
+                            Console.WriteLine("Connected to Wifi Network.");
+                        }
+                        break;
+                    case "32":
+                        Console.WriteLine("Disconnecting from Wifi Network ...\n");
+                        if (_screen.Wifi == "Disconnected")
+                        {
+                            Console.WriteLine("Already disconnected from Wifi Network.");
+                        }
+                        else
+                        {
+                            _screen.Wifi = "Disconnected";
+                            Console.WriteLine("Disconnected from Wifi Network.");
+                        }
+                        break;
+                    case "41":
+                        Console.WriteLine("Connecting to Bluetooth Device ...\n");
+                        if (_screen.Bluetooth == "Connected")
+                        {
+                            Console.WriteLine("Already connected to Bluetooth Device.");
+                        }
+                        else
+                        {
+                            _screen.Bluetooth = "Connected";
+                            Console.WriteLine("Connected to Bluetooth Device.");
+                        }
+                        break;
+                    case "42":
+                        Console.WriteLine("Disconnecting from Bluetooth Device ...\n");
+                        if (_screen.Bluetooth == "Disconnected")
+                        {
+                            Console.WriteLine("Already disconnected from Bluetooth Device.");
+                        }
+                        else
+                        {
+                            _screen.Bluetooth = "Disconnected";
+                            Console.WriteLine("Disconnected from Bluetooth Device.");
+                        }
+                        break;
+                    case "51":
+                        Console.WriteLine("Setting Input Mode to HDMI 1 ...\n");
+                        if (_screen.InputMode == "HDMI 1")
+                        {
+                            Console.WriteLine("Input Mode is already set to HDMI 1.");
+                        }
+                        else
+                        {
+                            _screen.InputMode = "HDMI 1";
+                            Console.WriteLine("Input Mode set to HDMI 1.");
+                        }
+                        break;
+                    case "52":
+                        Console.WriteLine("Setting Input Mode to HDMI 2 ...\n");
+                        if (_screen.InputMode == "HDMI 2")
+                        {
+                            Console.WriteLine("Input Mode is already set to HDMI 2.");
+                        }
+                        else
+                        {
+                            _screen.InputMode = "HDMI 2";
+                            Console.WriteLine("Input Mode set to HDMI 2.");
+                        }
+                        break;
+                    case "53":
+                        Console.WriteLine("Setting Input Mode to DisplayPort ...\n");
+                        if (_screen.InputMode == "DisplayPort")
+                        {
+                            Console.WriteLine("Input Mode is already set to DisplayPort.");
+                        }
+                        else
+                        {
+                            _screen.InputMode = "DisplayPort";
+                            Console.WriteLine("Input Mode set to DisplayPort.");
+                        }
+                        break;
+                    case "54":
+                        Console.WriteLine("Setting Input Mode to DVI ...\n");
+                        if (_screen.InputMode == "DVI")
+                        {
+                            Console.WriteLine("Input Mode is already set to DVI.");
+                        }
+                        else
+                        {
+                            _screen.InputMode = "DVI";
+                            Console.WriteLine("Input Mode set to DVI.");
+                        }
+                        break;
+                    case "61":
+                        Console.WriteLine("Setting Model to 75TU7000 ...\n");
+                        if (_screen.Model == "75TU7000")
+                        {
+                            Console.WriteLine("Model is already set to 75TU7000.");
+                        }
+                        else
+                        {
+                            IScreenFactory screenFactory = ScreenFactory.getScreen("75TU7000");
+                            _screen.Model = screenFactory.Model();
+                            Console.WriteLine("Model set to 75TU7000.");
+                        }
+                        break;
+                    case "62":
+                        Console.WriteLine("Setting Model to 70TU7000 ...\n");
+                        if (_screen.Model == "70TU7000")
+                        {
+                            Console.WriteLine("Model is already set to 70TU7000.");
+                        }
+                        else
+                        {
+                            IScreenFactory screenFactory = ScreenFactory.getScreen("70TU7000");
+                            _screen.Model = screenFactory.Model();
+                            Console.WriteLine("Model set to 70TU7000.");
+                        }
+                        break;
+                    case "63":
+                        Console.WriteLine("Setting Model to 65TU7000 ...\n");
+                        if (_screen.Model == "65TU7000")
+                        {
+                            Console.WriteLine("Model is already set to 65TU7000.");
+                        }
+                        else
+                        {
+                            IScreenFactory screenFactory = ScreenFactory.getScreen("65TU7000");
+                            _screen.Model = screenFactory.Model();
+                            Console.WriteLine("Model set to 65TU7000.");
+                        }
+                        break;
+                    case "64":
+                        Console.WriteLine("Setting Model to 58TU7000 ...\n");
+                        if (_screen.Model == "58TU7000")
+                        {
+                            Console.WriteLine("Model is already set to 58TU7000.");
+                        }
+                        else
+                        {
+                            IScreenFactory screenFactory = ScreenFactory.getScreen("58TU7000");
+                            _screen.Model = screenFactory.Model();
+                            Console.WriteLine("Model set to 58TU7000.");
+                        }
+                        break;
+                    case "65":
+                        Console.WriteLine("Setting Model to 55TU7000 ...\n");
+                        if (_screen.Model == "55TU7000")
+                        {
+                            Console.WriteLine("Model is already set to 55TU7000.");
+                        }
+                        else
+                        {
+                            IScreenFactory screenFactory = ScreenFactory.getScreen("55TU7000");
+                            _screen.Model = screenFactory.Model();
+                            Console.WriteLine("Model set to 55TU7000.");
+                        }
+                        break;
+                    case "66":
+                        Console.WriteLine("Setting Model to 50TU7000 ...\n");
+                        if (_screen.Model == "50TU7000")
+                        {
+                            Console.WriteLine("Model is already set to 50TU7000.");
+                        }
+                        else
+                        {
+                            IScreenFactory screenFactory = ScreenFactory.getScreen("50TU7000");
+                            _screen.Model = screenFactory.Model();
+                            Console.WriteLine("Model set to 50TU7000.");
+                        }
+                        break;
+                    case "67":
+                        Console.WriteLine("Setting Model to 43TU7000 ...\n");
+                        if (_screen.Model == "43TU7000")
+                        {
+                            Console.WriteLine("Model is already set to 43TU7000.");
+                        }
+                        else
+                        {
+                            IScreenFactory screenFactory = ScreenFactory.getScreen("43TU7000");
+                            _screen.Model = screenFactory.Model();
+                            Console.WriteLine("Model set to 43TU7000.");
+                        }
+                        break;
+                    case "0":
+                        Console.WriteLine("Exiting Settings ...\n");
+                        _screen.Settings = false;
+                        break;
+                    default:
+                        Console.WriteLine("Invalid Command. Please try again.");
+                        break;
                 }
-                else
-                {
-                    _screen.PictureMode = "Standard";
-                    Console.WriteLine("Picture Mode set to Standard.");
-                }
-                break;
-                case "12":
-                Console.WriteLine("Setting Picture Mode to Dynamic ...\n");
-                if (_screen.PictureMode == "Dynamic")
-                {
-                    Console.WriteLine("Picture Mode is already set to Dynamic.");
-                }
-                else
-                {
-                    _screen.PictureMode = "Dynamic";
-                    Console.WriteLine("Picture Mode set to Dynamic.");
-                }
-                break;
-                case "13":
-                Console.WriteLine("Setting Picture Mode to Natural ...\n");
-                if (_screen.PictureMode == "Natural")
-                {
-                    Console.WriteLine("Picture Mode is already set to Natural.");
-                }
-                else
-                {
-                    _screen.PictureMode = "Natural";
-                    Console.WriteLine("Picture Mode set to Natural.");
-                }
-                break;
-                case "14":
-                Console.WriteLine("Setting Picture Mode to Movie ...\n");
-                if (_screen.PictureMode == "Movie")
-                {
-                    Console.WriteLine("Picture Mode is already set to Movie.");
-                }
-                else
-                {
-                    _screen.PictureMode = "Movie";
-                    Console.WriteLine("Picture Mode set to Movie.");
-                }
-                break;
-                case "15":
-                Console.WriteLine("Setting Picture Mode to Game ...\n");
-                if (_screen.PictureMode == "Game")
-                {
-                    Console.WriteLine("Picture Mode is already set to Game.");
-                }
-                else
-                {
-                    _screen.PictureMode = "Game";
-                    Console.WriteLine("Picture Mode set to Game.");
-                }
-                break;
-                case "21":
-                Console.WriteLine("Setting Sound Mode to Standard ...\n");
-                if (_screen.SoundMode == "Standard")
-                {
-                    Console.WriteLine("Sound Mode is already set to Standard.");
-                }
-                else
-                {
-                    _screen.SoundMode = "Standard";
-                    Console.WriteLine("Sound Mode set to Standard.");
-                }
-                break;
-                case "22":
-                Console.WriteLine("Setting Sound Mode to Music ...\n");
-                if (_screen.SoundMode == "Music")
-                {
-                    Console.WriteLine("Sound Mode is already set to Music.");
-                }
-                else
-                {
-                    _screen.SoundMode = "Music";
-                    Console.WriteLine("Sound Mode set to Music.");
-                }
-                break;
-                case "23":
-                Console.WriteLine("Setting Sound Mode to Movie ...\n");
-                if (_screen.SoundMode == "Movie")
-                {
-                    Console.WriteLine("Sound Mode is already set to Movie.");
-                }
-                else
-                {
-                    _screen.SoundMode = "Movie";
-                    Console.WriteLine("Sound Mode set to Movie.");
-                }
-                break;
-                case "24":
-                Console.WriteLine("Setting Sound Mode to Clear Voice ...\n");
-                if (_screen.SoundMode == "Clear Voice")
-                {
-                    Console.WriteLine("Sound Mode is already set to Clear Voice.");
-                }
-                else
-                {
-                    _screen.SoundMode = "Clear Voice";
-                    Console.WriteLine("Sound Mode set to Clear Voice.");
-                }
-                break;
-                case "25":
-                Console.WriteLine("Setting Sound Mode to Amplify ...\n");
-                if (_screen.SoundMode == "Amplify")
-                {
-                    Console.WriteLine("Sound Mode is already set to Amplify.");
-                }
-                else
-                {
-                    _screen.SoundMode = "Amplify";
-                    Console.WriteLine("Sound Mode set to Amplify.");
-                }
-                break;
-                case "31":
-                Console.WriteLine("Connecting to Wifi Network ...\n");
-                if (_screen.Wifi == "Connected")
-                {
-                    Console.WriteLine("Already connected to Wifi Network.");
-                }
-                else
-                {
-                    _screen.Wifi = "Connected";
-                    Console.WriteLine("Connected to Wifi Network.");
-                }
-                break;
-                case "32":
-                Console.WriteLine("Disconnecting from Wifi Network ...\n");
-                if (_screen.Wifi == "Disconnected")
-                {
-                    Console.WriteLine("Already disconnected from Wifi Network.");
-                }
-                else
-                {
-                    _screen.Wifi = "Disconnected";
-                    Console.WriteLine("Disconnected from Wifi Network.");
-                }
-                break;
-                case "41":
-                Console.WriteLine("Connecting to Bluetooth Device ...\n");
-                if (_screen.Bluetooth == "Connected")
-                {
-                    Console.WriteLine("Already connected to Bluetooth Device.");
-                }
-                else
-                {
-                    _screen.Bluetooth = "Connected";
-                    Console.WriteLine("Connected to Bluetooth Device.");
-                }
-                break;
-                case "42":
-                Console.WriteLine("Disconnecting from Bluetooth Device ...\n");
-                if (_screen.Bluetooth == "Disconnected")
-                {
-                    Console.WriteLine("Already disconnected from Bluetooth Device.");
-                }
-                else
-                {
-                    _screen.Bluetooth = "Disconnected";
-                    Console.WriteLine("Disconnected from Bluetooth Device.");
-                }
-                break;
-                case "51":
-                Console.WriteLine("Setting Input Mode to HDMI 1 ...\n");
-                if (_screen.InputMode == "HDMI 1")
-                {
-                    Console.WriteLine("Input Mode is already set to HDMI 1.");
-                }
-                else
-                {
-                    _screen.InputMode = "HDMI 1";
-                    Console.WriteLine("Input Mode set to HDMI 1.");
-                }
-                break;
-                case "52":
-                Console.WriteLine("Setting Input Mode to HDMI 2 ...\n");
-                if (_screen.InputMode == "HDMI 2")
-                {
-                    Console.WriteLine("Input Mode is already set to HDMI 2.");
-                }
-                else
-                {
-                    _screen.InputMode = "HDMI 2";
-                    Console.WriteLine("Input Mode set to HDMI 2.");
-                }
-                break;
-                case "53":
-                Console.WriteLine("Setting Input Mode to DisplayPort ...\n");
-                if (_screen.InputMode == "DisplayPort")
-                {
-                    Console.WriteLine("Input Mode is already set to DisplayPort.");
-                }
-                else
-                {
-                    _screen.InputMode = "DisplayPort";
-                    Console.WriteLine("Input Mode set to DisplayPort.");
-                }
-                break;
-                case "54":
-                Console.WriteLine("Setting Input Mode to DVI ...\n");
-                if (_screen.InputMode == "DVI")
-                {
-                    Console.WriteLine("Input Mode is already set to DVI.");
-                }
-                else
-                {
-                    _screen.InputMode = "DVI";
-                    Console.WriteLine("Input Mode set to DVI.");
-                }
-                break;
-                case "61":
-                Console.WriteLine("Setting Model to 75TU7000 ...\n");
-                if (_screen.Model == "75TU7000")
-                {
-                    Console.WriteLine("Model is already set to 75TU7000.");
-                }
-                else
-                {
-                    _screen.Model = "75TU7000";
-                    Console.WriteLine("Model set to 75TU7000.");
-                }
-                break;
-                case "62":
-                Console.WriteLine("Setting Model to 70TU7000 ...\n");
-                if (_screen.Model == "70TU7000")
-                {
-                    Console.WriteLine("Model is already set to 70TU7000.");
-                }
-                else
-                {
-                    _screen.Model = "70TU7000";
-                    Console.WriteLine("Model set to 70TU7000.");
-                }
-                break;
-                case "63":
-                Console.WriteLine("Setting Model to 65TU7000 ...\n");
-                if (_screen.Model == "65TU7000")
-                {
-                    Console.WriteLine("Model is already set to 65TU7000.");
-                }
-                else
-                {
-                    _screen.Model = "65TU7000";
-                    Console.WriteLine("Model set to 65TU7000.");
-                }
-                break;
-                case "64":
-                Console.WriteLine("Setting Model to 58TU7000 ...\n");
-                if (_screen.Model == "58TU7000")
-                {
-                    Console.WriteLine("Model is already set to 58TU7000.");
-                }
-                else
-                {
-                    _screen.Model = "58TU7000";
-                    Console.WriteLine("Model set to 58TU7000.");
-                }
-                break;
-                case "65":
-                Console.WriteLine("Setting Model to 55TU7000 ...\n");
-                if (_screen.Model == "55TU7000")
-                {
-                    Console.WriteLine("Model is already set to 55TU7000.");
-                }
-                else
-                {
-                    _screen.Model = "55TU7000";
-                    Console.WriteLine("Model set to 55TU7000.");
-                }
-                break;
-                case "66":
-                Console.WriteLine("Setting Model to 50TU7000 ...\n");
-                if (_screen.Model == "50TU7000")
-                {
-                    Console.WriteLine("Model is already set to 50TU7000.");
-                }
-                else
-                {
-                    _screen.Model = "50TU7000";
-                    Console.WriteLine("Model set to 50TU7000.");
-                }
-                break;
-                case "67":
-                Console.WriteLine("Setting Model to 43TU7000 ...\n");
-                if (_screen.Model == "43TU7000")
-                {
-                    Console.WriteLine("Model is already set to 43TU7000.");
-                }
-                else
-                {
-                    _screen.Model = "43TU7000";
-                    Console.WriteLine("Model set to 43TU7000.");
-                }
-                break;
-                case "0":
-                Console.WriteLine("Exiting Settings ...\n");
-                _screen.Settings = false;
-                break;
-                default:
-                Console.WriteLine("Invalid Command. Please try again.");
-                break;
-            }
-            System.Threading.Thread.Sleep(500);
-            Console.Clear();
+                System.Threading.Thread.Sleep(500);
+                Console.Clear();
             }
         }
     }
@@ -889,7 +1014,7 @@ namespace Project2
             Console.WriteLine("Welcome to the TV Remote Control Program (TV Model: 75TU7000)"); // Welcome Message
             Console.WriteLine("\nBooting up ...");
 
-            System.Threading.Thread.Sleep(200);
+            System.Threading.Thread.Sleep(2000);
             Console.WriteLine("\n           ...");
             System.Threading.Thread.Sleep(200);
             Console.WriteLine("\n           ...\n");
