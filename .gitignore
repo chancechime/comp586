@@ -8,7 +8,7 @@ x64/
 [Oo]bj/
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
-*_i.c
+*_i.c 
 *_p.c
 *_i.h
 *.ilk
