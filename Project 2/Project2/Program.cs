@@ -29,26 +29,26 @@ namespace Project2
             Console.WriteLine($"TV Power: {powered}");
         }
 
-        public void Volume(int volchange, Screen _screen)
+        public void Volume(string volchange, Screen _screen)
         {
-            int _volumeChange = volchange;
+            string _volumeChange = volchange;
             switch (_volumeChange)
             {
-                case 1 when _screen.Volume < 20: // Increase Volume
+                case "up" when _screen.Volume < 20: // Increase Volume
                     _screen.Volume++;
                     Console.WriteLine($"Volume: {_screen.Volume}|20 {(_screen.Mute ? "(MUTED)" : "")}");
                     System.Threading.Thread.Sleep(500);
                     break;
-                case 1 when _screen.Volume >= 20: // Volume is at max level
+                case "up" when _screen.Volume >= 20: // Volume is at max level
                     Console.WriteLine($"Volume is at max level. (20|20) {(_screen.Mute ? "(MUTED)" : "")}");
                     System.Threading.Thread.Sleep(500);
                     break;
-                case 0 when _screen.Volume > 0: // Decrease Volume
+                case "down" when _screen.Volume > 0: // Decrease Volume
                     _screen.Volume--;
                     Console.WriteLine($"Volume: {_screen.Volume}|20 {(_screen.Mute ? "(MUTED)" : "")}");
                     System.Threading.Thread.Sleep(500);
                     break;
-                case 0 when _screen.Volume <= 0: // Volume is at min level
+                case "down" when _screen.Volume <= 0: // Volume is at min level
                     Console.WriteLine($"Volume is at min level. (0|20) {(_screen.Mute ? "(MUTED)" : "")}");
                     System.Threading.Thread.Sleep(500);
                     break;
@@ -59,20 +59,20 @@ namespace Project2
             }
         }
 
-        public void Channel(Remote _remote, Screen _screen, int chgchannel)
+        public void Channel(Remote _remote, Screen _screen, string chgchannel)
         {
-            int _channelChange = chgchannel;
+            string _channelChange = chgchannel;
             switch (_channelChange)
             {
-                case 0: // Increase Channel
+                case "up": // Increase Channel
                     _screen.Channel++;
                     if (_screen.Channel == 56) { _screen.Channel = 1; }
                     break;
-                case -1: // Decrease Channel
+                case "down": // Decrease Channel
                     _screen.Channel--;
                     if (_screen.Channel == 0) { _screen.Channel = 55; }
                     break;
-                case -2: // Channel Directory
+                case "directory": // Channel Directory
                     for (int i = 1; i <= 55; i++)
                     {
                         int k = i - 1;
@@ -105,7 +105,14 @@ namespace Project2
                     Console.Clear();
                     break;
                 default: // Change to specific channel
-                    _screen.Channel = Math.Clamp(_channelChange, 1, 55);
+                    if (int.TryParse(_channelChange, out int channelNumber))
+                    {
+                        _screen.Channel = Math.Clamp(channelNumber, 1, 55);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid channel number.");
+                    }
                     break;
             }
 
@@ -164,11 +171,11 @@ namespace Project2
         public void PrintStatus()
         {
             Console.WriteLine("TV Status:");
-            Console.WriteLine($"\tModel: {Model}");
-            Console.WriteLine($"\tPower: {Power}");
-            Console.WriteLine($"\tVolume: {Volume}");
-            Console.WriteLine($"\tChannel: {Channel} | {Enum.GetName(typeof(ChannelDirectory), Channel - 1)}");
-            Console.WriteLine($"\tMute: {Mute}");
+            Console.WriteLine($"   Model: {Model}");
+            Console.WriteLine($"   Power: {Power}");
+            Console.WriteLine($"   Volume: {Volume}");
+            Console.WriteLine($"   Channel: {Channel} | {Enum.GetName(typeof(ChannelDirectory), Channel - 1)}");
+            Console.WriteLine($"   Mute: {Mute}");
             Console.WriteLine();
             Console.WriteLine();
         }
@@ -181,7 +188,7 @@ namespace Project2
         public string InputMode { get; set; } = "HDMI 1";
     }
 
-    // Builder class for Screen
+    // Factory class for Screen
     public interface IScreenFactory
     {
         string Model();
@@ -387,9 +394,9 @@ namespace Project2
         {
             private Remote _remote;
             private Screen _screen;
-            private int _volumeChange;
+            private string _volumeChange;
 
-            public VolumeCommand(Remote remote, Screen screen, int volumeChange)
+            public VolumeCommand(Remote remote, Screen screen, string volumeChange)
             {
                 _remote = remote;
                 _screen = screen;
@@ -415,9 +422,9 @@ namespace Project2
         {
             private Remote _remote;
             private Screen _screen;
-            private int _channelChange;
+            private string _channelChange;
 
-            public ChannelCommand(Remote remote, Screen screen, int channelChange)
+            public ChannelCommand(Remote remote, Screen screen, string channelChange)
             {
                 _remote = remote;
                 _screen = screen;
@@ -639,42 +646,42 @@ namespace Project2
             {
                 Console.WriteLine("Settings Menu:");
 
-                Console.WriteLine("\n   Picture Mode");
-                Console.WriteLine("\t11 - Standard");
-                Console.WriteLine("\t12 - Dynamic");
-                Console.WriteLine("\t13 - Natural");
-                Console.WriteLine("\t14 - Movie");
-                Console.WriteLine("\t15 - Game");
+                Console.WriteLine("\nPicture Mode");
+                Console.WriteLine("   11 - Standard");
+                Console.WriteLine("   12 - Dynamic");
+                Console.WriteLine("   13 - Natural");
+                Console.WriteLine("   14 - Movie");
+                Console.WriteLine("   15 - Game");
 
-                Console.WriteLine("\n   Sound Mode");
-                Console.WriteLine("\t21 - Standard");
-                Console.WriteLine("\t22 - Music");
-                Console.WriteLine("\t23 - Movie");
-                Console.WriteLine("\t24 - Clear Voice");
-                Console.WriteLine("\t25 - Amplify");
+                Console.WriteLine("\nSound Mode");
+                Console.WriteLine("   21 - Standard");
+                Console.WriteLine("   22 - Music");
+                Console.WriteLine("   23 - Movie");
+                Console.WriteLine("   24 - Clear Voice");
+                Console.WriteLine("   25 - Amplify");
 
-                Console.WriteLine("\n   Wi-Fi Network");
-                Console.WriteLine("\t31 - Connect to Wifi Network");
-                Console.WriteLine("\t32 - Disconnect from Wifi Network");
+                Console.WriteLine("\nWi-Fi Network");
+                Console.WriteLine("   31 - Connect to Wifi Network");
+                Console.WriteLine("   32 - Disconnect from Wifi Network");
 
-                Console.WriteLine("   Bluetooth");
-                Console.WriteLine("\t41 - Connect to Bluetooth Device");
-                Console.WriteLine("\t42 - Disconnect from Bluetooth Device");
+                Console.WriteLine("\nBluetooth");
+                Console.WriteLine("   41 - Connect to Bluetooth Device");
+                Console.WriteLine("   42 - Disconnect from Bluetooth Device");
 
-                Console.WriteLine("\n   Input Mode");
-                Console.WriteLine("\t51 - HDMI 1");
-                Console.WriteLine("\t52 - HDMI 2");
-                Console.WriteLine("\t53 - DisplayPort");
-                Console.WriteLine("\t54 - DVI");
+                Console.WriteLine("\nInput Mode");
+                Console.WriteLine("   51 - HDMI 1");
+                Console.WriteLine("   52 - HDMI 2");
+                Console.WriteLine("   53 - DisplayPort");
+                Console.WriteLine("   54 - DVI");
 
-                Console.WriteLine("\n   Model Selection");
-                Console.WriteLine("\t61 - 75TU7000");
-                Console.WriteLine("\t62 - 70TU7000");
-                Console.WriteLine("\t63 - 65TU7000");
-                Console.WriteLine("\t64 - 58TU7000");
-                Console.WriteLine("\t65 - 55TU7000");
-                Console.WriteLine("\t66 - 50TU7000");
-                Console.WriteLine("\t67 - 43TU7000");
+                Console.WriteLine("\nModel Selection");
+                Console.WriteLine("   61 - 75TU7000");
+                Console.WriteLine("   62 - 70TU7000");
+                Console.WriteLine("   63 - 65TU7000");
+                Console.WriteLine("   64 - 58TU7000");
+                Console.WriteLine("   65 - 55TU7000");
+                Console.WriteLine("   66 - 50TU7000");
+                Console.WriteLine("   67 - 43TU7000");
 
                 Console.WriteLine("\n   0 - Exit");
                 Console.WriteLine("\nEnter a command:");
@@ -1011,7 +1018,10 @@ namespace Project2
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Welcome to the TV Remote Control Program (TV Model: 75TU7000)"); // Welcome Message
+            Screen screen = new Screen();
+            Remote remote = new Remote();
+
+            Console.WriteLine($"Welcome to the TV Remote Control Program (TV Model: {screen.Model})"); // Welcome Message
             Console.WriteLine("\nBooting up ...");
 
             System.Threading.Thread.Sleep(2000);
@@ -1020,8 +1030,7 @@ namespace Project2
             Console.WriteLine("\n           ...\n");
             System.Threading.Thread.Sleep(200);
             Console.Clear();
-            Screen screen = new Screen();
-            Remote remote = new Remote();
+
             bool exit = false;
             bool s_menu = screen.SmartMenu;
             bool smenu = screen.Settings;
@@ -1067,16 +1076,19 @@ namespace Project2
                     return new RemoteCommand.PowerCommand(remote, screen);
                 case "2":
                     Console.WriteLine();
-                    return new RemoteCommand.VolumeCommand(remote, screen, 1);
+                    return new RemoteCommand.VolumeCommand(remote, screen, "up");
                 case "3":
                     Console.WriteLine();
-                    return new RemoteCommand.ChannelCommand(remote, screen, 0);
+                    return new RemoteCommand.VolumeCommand(remote, screen, "down");
+                case "4":
+                    Console.WriteLine();
+                    return new RemoteCommand.ChannelCommand(remote, screen, "up");
                 case "5":
                     Console.WriteLine();
-                    return new RemoteCommand.ChannelCommand(remote, screen, -1);
+                    return new RemoteCommand.ChannelCommand(remote, screen, "down");
                 case "6":
                     Console.WriteLine();
-                    return new RemoteCommand.ChannelCommand(remote, screen, -2);
+                    return new RemoteCommand.ChannelCommand(remote, screen, "directory");
                 case "7":
                     Console.WriteLine();
                     return new RemoteCommand.MuteCommand(remote, screen);
