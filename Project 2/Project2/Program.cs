@@ -1,4 +1,8 @@
-﻿using System;
+﻿/*
+    * Project 2: Remote Control
+    * Student: Chance Chime
+*/
+using System;
 
 namespace Project2
 {
